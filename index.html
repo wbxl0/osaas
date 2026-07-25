@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanał Lalek - Strona Główna</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #fef7f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header styles */
+        header {
+            background: linear-gradient(135deg, #ff7bac 0%, #ff4d8d 100%);
+            color: white;
+            padding: 30px 0;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 5px 15px rgba(255, 77, 141, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="white" fill-opacity="0.1" d="M20,20 Q40,5 60,20 T100,20 Q80,35 60,20 T20,20Z"/></svg>');
+            background-size: 200px;
+        }
+        
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .channel-name {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: white;
+            border-radius: 50px;
+            padding: 15px 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #ff4d8d;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+        
+        .nav-links a:hover {
+            background-color: #fff0f5;
+            transform: translateY(-3px);
+        }
+        
+        /* Main content */
+        main {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #ff4d8d;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background-color: #ffb6d9;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        /* About section */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 70px;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .about-image img:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Products section */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 70px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-image {
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-name {
+            font-size: 1.4rem;
+            color: #ff4d8d;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .buy-button {
+            display: inline-block;
+            background-color: #ff4d8d;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .buy-button:hover {
+            background-color: #ff2d7a;
+            transform: scale(1.05);
+        }
+        
+        /* Streaming section */
+        .stream-info {
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-bottom: 70px;
+            text-align: center;
+        }
+        
+        .stream-schedule {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .stream-day {
+            background-color: #fff0f5;
+            padding: 20px;
+            border-radius: 15px;
+            min-width: 180px;
+        }
+        
+        .day {
+            font-weight: 700;
+            color: #ff4d8d;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .time {
+            font-size: 1.1rem;
+        }
+        
+        .platform-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .platform-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #ff4d8d;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .platform-btn:hover {
+            background-color: #ff2d7a;
+            transform: translateY(-5px);
+        }
+        
+        /* Contact section */
+        .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #ff7bac;
+            outline: none;
+        }
+        
+        .contact-details {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: #ff4d8d;
+            color: white;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: #ff2d7a;
+            transform: translateY(-5px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .channel-name {
+                font-size: 2.2rem;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .stream-day {
+                min-width: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">🧸</div>
+                <h1 class="channel-name">Lalki od Ani</h1>
+                <p class="tagline">Ręcznie robione lalki i pluszaki z miłością i pasją. Dołącz do naszych transmisji na żywo!</p>
+                
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#o-mnie">O mnie</a></li>
+                        <li><a href="#produkty">Moje lalki</a></li>
+                        <li><a href="#transmisje">Transmisje</a></li>
+                        <li><a href="#kontakt">Kontakt</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section id="o-mnie">
+            <h2 class="section-title">O mnie</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Cześć! Jestem Ania, pasjonatka ręcznie robionych lalek i pluszaków. Moja przygoda zaczęła się 5 lat temu, gdy stworzyłam pierwszą lalkę dla mojej siostrzenicy. Od tamtej pory moja pasja przerodziła się w prawdziwą miłość do tworzenia unikalnych, ręcznie robionych zabawek.</p>
+                    <p>Podczas moich transmisji na żywo pokazuję proces tworzenia lalek od podstaw, dzielę się wskazówkami i technikami, a także organizuję aukcje na moje gotowe dzieła. Każda lalka jest wyjątkowa i tworzona z najwyższą starannością.</p>
+                    <p>Dołącz do mojej społeczności miłośników lalek i razem stwórzmy coś wyjątkowego!</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ania tworząca lalki">
+                </div>
+            </div>
+        </section>
+        
+        <section id="produkty">
+            <h2 class="section-title">Moje lalki</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://pic.sld.tw/ri/hd/17.webp" alt="Lalka Zosia">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Lalka Zosia</h3>
+                        <p class="product-description">Ręcznie szyta lalka z naturalnych materiałów, 35 cm wysokości.</p>
+                        <p class="product-price">149 zł</p>
+                        <a href="#" class="buy-button">Kup teraz</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Miś Tadek">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Miś Tadek</h3>
+                        <p class="product-description">Mięciutki pluszowy miś z wełny, idealny do przytulania.</p>
+                        <p class="product-price">129 zł</p>
+                        <a href="#" class="buy-button">Kup teraz</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Lalka Kasia">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Lalka Kasia</h3>
+                        <p class="product-description">Lalka z ręcznie malowaną twarzą i ubrankiem na zmianę.</p>
+                        <p class="product-price">179 zł</p>
+                        <a href="#" class="buy-button">Kup teraz</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://pic.sld.tw/ri/hd/5.webp" alt="Zajączek Franek">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Zajączek Franek</h3>
+                        <p class="product-description">Uroczy zajączek w kraciastej kamizelce, wysokość 25 cm.</p>
+                        <p class="product-price">99 zł</p>
+                        <a href="#" class="buy-button">Kup teraz</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="transmisje">
+            <h2 class="section-title">Transmisje na żywo</h2>
+            <div class="stream-info">
+                <p>Transmituję regularnie na różnych platformach. Podczas transmisji pokazuję proces tworzenia lalek, odpowiadam na pytania i organizuję aukcje na moje prace. Dołącz do nas!</p>
+                
+                <div class="stream-schedule">
+                    <div class="stream-day">
+                        <div class="day">Poniedziałek</div>
+                        <div class="time">18:00 - 20:00</div>
+                    </div>
+                    <div class="stream-day">
+                        <div class="day">Środa</div>
+                        <div class="time">19:00 - 21:00</div>
+                    </div>
+                    <div class="stream-day">
+                        <div class="day">Piątek</div>
+                        <div class="time">17:00 - 20:00</div>
+                    </div>
+                </div>
+                
+                <div class="platform-links">
+                    <a href="#" class="platform-btn">
+                        <i class="fab fa-youtube"></i>
+                        <span>YouTube</span>
+                    </a>
+                    <a href="#" class="platform-btn">
+                        <i class="fab fa-twitch"></i>
+                        <span>Twitch</span>
+                    </a>
+                    <a href="#" class="platform-btn">
+                        <i class="fab fa-facebook"></i>
+                        <span>Facebook</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="kontakt">
+            <h2 class="section-title">Kontakt</h2>
+            <div class="contact-content">
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Imię i nazwisko</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Adres email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Wiadomość</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="buy-button">Wyślij wiadomość</button>
+                    </form>
+                </div>
+                
+                <div class="contact-details">
+                    <h3 style="color: #ff4d8d; margin-bottom: 20px;">Skontaktuj się ze mną</h3>
+                    <p><i class="fas fa-envelope"></i> Email: ania@lalkiodani.pl</p>
+                    <p><i class="fas fa-phone"></i> Telefon: +48 123 456 789</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Lokalizacja: Warszawa, Polska</p>
+                    
+                    <h3 style="color: #ff4d8d; margin-top: 30px;">Obserwuj mnie</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo" style="font-size: 2.5rem;">🧸</div>
+                <h3 style="margin: 15px 0;">Lalki od Ani</h3>
+                <p>Ręcznie robione lalki i pluszaki z miłością i pasją</p>
+                <p class="copyright">© 2023 Lalki od Ani. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Dziękuję za wiadomość! Odpowiem tak szybko, jak to możliwe.');
+            this.reset();
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
